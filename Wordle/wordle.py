@@ -10,7 +10,9 @@ class Wordle:
         with open ("valid-wordle-words.txt") as valid_words:
             for word in valid_words:
                 self.word_list.append(word.replace("\n",""))
-        
+        self.letter_dict = {'A' : 'A','B' : 'B','C' : 'C','D' : 'D','E' : 'E','F' : 'F','G' : 'G','H' : 'H',
+            'I' : 'I','J' : 'J','K' : 'K','L' : 'L','M' : 'M','N' : 'N','O' : 'O','P' : 'P','Q' : 'Q',
+            'R' : 'R','S' : 'S','T' : 'T','U' : 'U','V' : 'V','W' : 'W','X' : 'X','Y' : 'Y','Z' : 'Z'}
         self.blank_board()
         self.row = 0
         self.position = {
@@ -60,13 +62,20 @@ class Wordle:
         green_dict = {}
         yellow_dict = {}
         wrong_dict = {}
+        used_dict = {}
         for i in range(5):
             if guess_char_list[i] == answer_char_list[i]:
                 green_dict[i] = guess_char_list[i]
+                used_dict[i] = guess_char_list[i]
             elif guess_char_list[i] in answer_char_list:
                 yellow_dict[i] = guess_char_list[i]
+                used_dict[i] = guess_char_list[i]
             else:
                 wrong_dict[i] = guess_char_list[i]
+                used_dict[i] = guess_char_list[i]
+        for letter in used_dict.values():
+            if letter.upper() in self.letter_dict:
+                self.letter_dict.pop(letter.upper())
         return green_dict,yellow_dict,wrong_dict
 
     def run(self):
@@ -78,12 +87,20 @@ class Wordle:
             # while(not valid_guess):
             #     guess = self.get_guess()
             #     valid_guess = self.valid_word(guess)
+            # self.string_letters = str(self.letter_dict)
+            self.string_letters = "Remaining Letters: "
+            
             guess = self.get_guess()
             green_dict,yellow_dict,wrong_dict = self.letter_calculation(guess, answer)
             self.create_board(green_dict,yellow_dict,wrong_dict)
+            # self.string_letters = str(self.letter_dict)
+            
+            for letter in self.letter_dict.values():
+                self.string_letters += letter + " "
+            print(self.string_letters)
             game_over = self.check_game_over(guess,answer)
         if(self.row > 4):
-            print("You Lose")
+            print("You Lose \nAnswer: " + answer)
         else:
             print("You Win!!!")
     
@@ -104,6 +121,7 @@ class Wordle:
         good = False
         while (not good):
             guess = input("What is your guess? ").replace(" ", "")
+            guess = guess.lower()
             good = self.valid_word(guess)
             if not good:
                 print("Not a valid Word")
