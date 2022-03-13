@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=FieldLine
+comment0.text=\r\n\ Lines\ on\ the\ field\ are\ used\ to\ simulate\ vertical\ movement\ of\ characters.\r\n\ \r\n\ @author\ Group\ 4\r\n\ @version\ 3/16/21\r\n
+comment1.params=
+comment1.target=FieldLine()
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ FieldLine\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment3.params=
+comment3.target=void\ reset()
+comment3.text=\r\n\ Reset\ method\ deals\ with\ resetting\ objects\ when\ advancing\ levels\ in\ the\ game.\r\n
+comment4.params=
+comment4.target=void\ moveLine()
+numComments=5
