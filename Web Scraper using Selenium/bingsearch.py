@@ -13,7 +13,7 @@ class SearchEngine:
         self.last_name = self.lastnames[0]
     def search_url_maker(self,i):
         self.url_search = 'https://www.bing.com/search?q='
-        self.rmp = "+rate+my+professor"
+        self.rmp = "+rate+my+professor+auburn+university"
         self.url_search += self.firstnames[i] + "+" + self.lastnames[i] + self.rmp
         self.driver.get(self.url_search)
         self.professor_raw_url = self.driver.find_elements_by_xpath('//*[@id="b_results"]/li[1]/div[2]/div/cite')
